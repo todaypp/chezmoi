@@ -46,6 +46,12 @@ type SourceStateRenameDir struct {
 	newSourceRelPath SourceRelPath
 }
 
+// A SourceStateSoftRemove represents that an entry should be removed, but any
+// error should be ignored.
+type SourceStateSoftRemove struct {
+	targetRelPath RelPath
+}
+
 // Evaluate evaluates s and returns any error.
 func (s *SourceStateDir) Evaluate() error {
 	return nil
@@ -169,4 +175,29 @@ func (s *SourceStateRenameDir) TargetStateEntry(destSystem System, destDirAbsPat
 		oldRelPath: s.oldSourceRelPath.RelPath(),
 		newRelPath: s.newSourceRelPath.RelPath(),
 	}, nil
+}
+
+// Evaluate evaluates s and returns any error.
+func (s *SourceStateSoftRemove) Evaluate() error {
+	return nil
+}
+
+// MarshalZerologObject implements zerolog.LogObjectMarshaler.
+func (s *SourceStateSoftRemove) MarshalZerologObject(e *zerolog.Event) {
+	e.Stringer("targetRelPath", s.targetRelPath)
+}
+
+// Order returns s's order.
+func (s *SourceStateSoftRemove) Order() ScriptOrder {
+	return ScriptOrderDuring
+}
+
+// SourceRelPath returns s's source relative path.
+func (s *SourceStateSoftRemove) SourceRelPath() SourceRelPath {
+	return SourceRelPath{}
+}
+
+// TargetStateEntry returns s's target state entry.
+func (s *SourceStateSoftRemove) TargetStateEntry(destSystem System, destDirAbsPath AbsPath) (TargetStateEntry, error) {
+	return &TargetStateSoftRemoveDir{}, nil
 }

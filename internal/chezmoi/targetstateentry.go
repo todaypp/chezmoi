@@ -3,6 +3,7 @@ package chezmoi
 import (
 	"bytes"
 	"encoding/hex"
+	"errors"
 	"io/fs"
 	"runtime"
 	"time"
@@ -31,6 +32,10 @@ type TargetStateFile struct {
 
 // A TargetStateRemove represents the absence of an entry in the target state.
 type TargetStateRemove struct{}
+
+// A TargetStateSoftRemoveDir represents the absence of a directory in the
+// target state, but any errors should be ignored.
+type TargetStateSoftRemoveDir struct{}
 
 // A TargetStateScript represents the state of a script.
 type TargetStateScript struct {
@@ -287,6 +292,38 @@ func (t *TargetStateScript) SkipApply(persistentState PersistentState) (bool, er
 	default:
 		return false, nil
 	}
+}
+
+// Apply updates actualStateEntry to match t.
+func (t *TargetStateSoftRemoveDir) Apply(system System, persistentState PersistentState, actualStateEntry ActualStateEntry) (bool, error) {
+	if _, ok := actualStateEntry.(*ActualStateAbsent); ok {
+		return false, nil
+	}
+	switch err := system.Remove(actualStateEntry.Path()); {
+	case err == nil:
+		return true, nil
+	case errors.Is(err, nil):
+		return false, nil
+	default:
+		return false, err
+	}
+}
+
+// EntryState returns t's entry state.
+func (t *TargetStateSoftRemoveDir) EntryState(umask fs.FileMode) (*EntryState, error) {
+	return &EntryState{
+		Type: EntryStateTypeRemove,
+	}, nil
+}
+
+// Evaluate evaluates t.
+func (t *TargetStateSoftRemoveDir) Evaluate() error {
+	return nil
+}
+
+// SkipApply implements TargetState.SkipApply.
+func (t *TargetStateSoftRemoveDir) SkipApply(persistentState PersistentState) (bool, error) {
+	return false, nil
 }
 
 // Apply updates actualStateEntry to match t.

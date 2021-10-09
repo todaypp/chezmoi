@@ -856,6 +856,9 @@ func (s *SourceState) Read(ctx context.Context, options *ReadOptions) error {
 		}
 	}
 
+	// FIXME IAMHERE generate TargetStateSoftRemoveDirs for dirs that might be empty
+	// only needed if target dir is not known to contain entries
+
 	// Check for duplicate source entries with the same target name. Iterate
 	// over the target names in order so that any error is deterministic.
 	targetRelPaths := make([]RelPath, 0, len(allSourceStateEntries))
