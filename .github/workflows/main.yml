@@ -249,7 +249,7 @@ jobs:
         sudo apt-get -yq --no-install-suggests --no-install-recommends install musl-tools snapcraft
     - name: build-release
       if: github.event_name == 'push' || needs.changes.outputs.code == 'true'
-      uses: goreleaser/goreleaser-action@v2
+      uses: goreleaser/goreleaser-action@v3
       with:
         version: latest
         args: release --skip-publish --snapshot
@@ -481,7 +481,7 @@ jobs:
         SNAPCRAFT_LOGIN: ${{ secrets.SNAPCRAFT_LOGIN }}
       run: |
         snapcraft login --with <(echo "$SNAPCRAFT_LOGIN" | base64 -d)
-    - uses: goreleaser/goreleaser-action@v2
+    - uses: goreleaser/goreleaser-action@v3
       with:
         version: latest
         args: release
