@@ -46,7 +46,7 @@ require (
 	github.com/ulikunitz/xz v0.5.10
 	github.com/xanzy/ssh-agent v0.3.1 // indirect
 	github.com/yuin/goldmark v1.4.10 // indirect
-	github.com/zalando/go-keyring v0.2.0
+	github.com/zalando/go-keyring v0.2.1
 	go.etcd.io/bbolt v1.3.6
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.8.0
