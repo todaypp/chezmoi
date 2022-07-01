@@ -25,7 +25,7 @@ require (
 	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.18 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
-	github.com/mitchellh/mapstructure v1.4.3
+	github.com/mitchellh/mapstructure v1.5.0
 	github.com/muesli/combinator v0.3.0
 	github.com/muesli/termenv v0.11.0 // indirect
 	github.com/pelletier/go-toml v1.9.4
