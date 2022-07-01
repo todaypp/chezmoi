@@ -37,8 +37,7 @@ require (
 	github.com/spf13/afero v1.8.2
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.10.1
-	github.com/stretchr/objx v0.3.0 // indirect
-	github.com/stretchr/testify v1.7.1
+	github.com/stretchr/testify v1.8.0
 	github.com/twpayne/go-pinentry v0.2.0
 	github.com/twpayne/go-shell v0.3.1
 	github.com/twpayne/go-vfs/v4 v4.1.0
@@ -58,7 +57,7 @@ require (
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+	gopkg.in/yaml.v3 v3.0.1
 	howett.net/plist v1.0.0
 )
 
