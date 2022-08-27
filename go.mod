@@ -20,7 +20,7 @@ require (
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/muesli/combinator v0.3.0
-	github.com/pelletier/go-toml/v2 v2.0.3
+	github.com/pelletier/go-toml/v2 v2.0.5
 	github.com/rogpeppe/go-internal v1.9.0
 	github.com/rs/zerolog v1.27.0
 	github.com/sergi/go-diff v1.1.0
