@@ -26,7 +26,7 @@ require (
 	github.com/sergi/go-diff v1.1.0
 	github.com/spf13/afero v1.9.2
 	github.com/spf13/cobra v1.5.0
-	github.com/spf13/viper v1.12.0
+	github.com/spf13/viper v1.13.0
 	github.com/stretchr/testify v1.8.0
 	github.com/twpayne/go-pinentry v0.2.0
 	github.com/twpayne/go-shell v0.3.1
